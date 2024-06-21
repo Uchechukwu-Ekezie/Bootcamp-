@@ -2,11 +2,13 @@ import React from 'react'
 import Navigation from '../Components/Navigation'
 import { Outlet } from 'react-router-dom'
 import Footer from '../Components/Footer'
+import CountDown from '../Components/CountDown'
 
 function RootLayout() {
   return (
     <>
         <div>
+          <CountDown/>
             <Navigation/>
             <main className='min-h-80'>
               <Outlet/>
