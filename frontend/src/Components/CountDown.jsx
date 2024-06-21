@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./CountDown.css";
 
 function CountDown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -39,7 +40,7 @@ function CountDown() {
   }, []);
 
   return (
-    <div className="flex justify-center gap-5 text-center bg-slate-400">
+    <div className="flex justify-center gap-5 text-center fixed-top bg-slate-400">
       <div className="flex items-center">
         <span className="font-mono text-xl">
           {timeLeft.days}

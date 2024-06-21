@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Button from "./Button";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import "../../src/Components/Navigation.css";
 
 function Navigation({ Enroll }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Function to toggle the mobile menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Navigation items array
   const navItems = [
     { id: 1, text: "Home", link: "/" },
     { id: 2, text: "About", link: "/about" },
@@ -20,56 +19,59 @@ function Navigation({ Enroll }) {
   ];
 
   return (
-    <header className="bg-yellow-600">
+    <header className="fixed z-50 w-full bg-yellow-600 shadow-md shadow-slate-400">
       <div className="container flex items-center justify-between px-4 py-4 mx-auto md:px-6">
-        {/* Logo */}
         <Link to="/" className="flex items-center">
           <img
             src="/Assets/Image/Colorful_Brain_Human_Technology_Logo-removebg-preview.png"
             alt="logo"
-            style={{ width: "100px", height: "100px" }}
+            className="w-16 h-16 md:w-24 md:h-24"
           />
         </Link>
 
-        {/* Mobile Menu Button */}
-        <div className="flex items-center md:hidden">
+        <div className="md:hidden">
           <button
             onClick={toggleMenu}
             type="button"
             className="text-white focus:outline-none"
           >
             {isOpen ? (
-              <AiOutlineClose className="w-6 h-6" />
+              <AiOutlineClose className="w-8 h-8" />
             ) : (
-              <AiOutlineMenu className="w-6 h-6" />
+              <AiOutlineMenu className="w-8 h-8" />
             )}
           </button>
         </div>
 
-        {/* Navigation Links */}
         <nav
           className={`${
-            isOpen ? "block" : "hidden"
-          } md:flex md:items-center md:justify-center md:w-full mt-4 md:mt-0`}
+            isOpen ? "translate-x-0" : "-translate-x-full"
+          } fixed top-0 left-0 w-3/4 h-full bg-yellow-600 transition-transform duration-300 ease-in-out md:static md:flex md:w-auto md:h-auto md:bg-transparent md:translate-x-0`}
         >
-          <ul className="flex flex-col md:flex-row md:space-x-10">
+          <ul className="flex flex-col items-start justify-center h-full p-6 space-y-6 md:flex-row md:space-y-0 md:space-x-8 md:p-0">
             {navItems.map((item) => (
-              <li key={item.id}>
+              <li key={item.id} className="md:border-none">
                 <NavLink
                   to={item.link}
-                  className="block px-2 py-1 font-bold text-white transition-all hover:underline hover:text-gray-900"
+                  className="block text-xl font-bold text-white transition-all hover:underline hover:text-gray-900 md:text-base"
                   onClick={toggleMenu}
                 >
                   {item.text}
                 </NavLink>
               </li>
             ))}
+            <li className="mt-4 md:hidden">
+              <a href="/enroll">
+                <Button txt="Enroll Now" />
+              </a>
+            </li>
           </ul>
         </nav>
 
-        {/* Enroll Button for Mobile */}
-        <div className={`md:hidden ${isOpen ? "block" : "hidden"} mt-4`}>
-          <Button txt="Enroll Now" />
+        <div className="hidden md:block">
+          <a href="/enroll">
+            <Button txt="Enroll Now" />
+          </a>
         </div>
       </div>
     </header>
