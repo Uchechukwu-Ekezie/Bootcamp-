@@ -40,7 +40,7 @@ function Skills() {
             {icn.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center justify-center p-6 mx-4 mb-8 text-center rounded-lg bg-slate-700"
+                className="flex flex-col items-center justify-center p-6 mx-4 mb-8 text-center transition rounded-lg shadow-xl bg-slate-700 hover:border-white hover:shadow-white"
                 style={{ maxWidth: "300px" }} // Optional: Set max-width for better responsiveness
               >
                 <img
